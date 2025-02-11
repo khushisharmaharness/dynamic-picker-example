@@ -38,7 +38,7 @@ spec:
         repositoryname:
           title: Repo Name
           readonly: true
-          description: Harness Project Identifier
+          description: Repo Name
           type: string            
           ui:field: ContextViewer
           ui:options:
@@ -46,7 +46,7 @@ spec:
         branchName:
           title: Default Branch
           readonly: true
-          description: Harness Project Identifier
+          description: Default Branch
           type: string
           ui:field: ContextViewer
           ui:options:
@@ -54,7 +54,7 @@ spec:
         typeName:
           title: Visibility
           readonly: true
-          description: Harness Project Identifier
+          description: Visibility
           type: string     
           ui:field: ContextViewer
           ui:options:
