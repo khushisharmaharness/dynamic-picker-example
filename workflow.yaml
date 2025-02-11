@@ -8,23 +8,14 @@ spec:
   owner: khushi.sharma@harness.io
   type: service
   parameters:
-    - title: Fill in some steps
+    - title: Repo Picker
       properties:
         gitusername:
           title: Github username
-          description: Harness Project Identifier
+          description: Enter your Github username
           type: string
-          default: deepesh-ui
-        customOne:
-          title: GitHub Repos getter
-          type: string
-          description: Pick one of GitHub Repos
-          ui:field: SelectFieldFromApi
-          ui:options:
-            path: proxy/github-api/users/{{parameters.gitusername.split('/')[0]}}/repos
-            valueSelector: full_name
         custom:
-          title: GitHub Repos
+          title: GitHub Repositories
           type: string
           description: Pick one of GitHub Repos
           ui:field: SelectFieldFromApi
@@ -38,7 +29,7 @@ spec:
         repositoryname:
           title: Repo Name
           readonly: true
-          description: Repo Name
+          description: Repository Name
           type: string            
           ui:field: ContextViewer
           ui:options:
@@ -59,50 +50,6 @@ spec:
           ui:field: ContextViewer
           ui:options:
             getContextData: {{formContext.type}}          
-        userdata:
-          title: user detail
-          type: string
-          description: Pick one of GitHub Repos
-          ui:field: ValidateAndFetch
-          ui:options:
-            path: proxy/github-api/users/{{parameters.gitusername}}
-            contextData: 
-              loginName: login
-              plan: plan.name
-              publicRepos: public_repos
-        entityRefs:
-          title: Entity Refs
-          type: string
-          default: user:default/autouser1
-        customvalidate:
-          title: GitHub Repos Single
-          type: string
-          description: Pick one of GitHub Repos
-          ui:field: ValidateAndFetch
-          ui:options:
-            button: 
-              title: Fetch Refs
-            path: "catalog/entities/by-refs"
-            contextData: 
-              loginName: items[0].metadata.name
-            request: 
-              method: POST
-              headers: 
-                Content-Type: application/json
-              body: 
-                entityRefs:
-                - {{parameters.entityRefs}}
-                fields:
-                - kind
-                - metadata.name               
-        gitname:
-          title: User Name
-          readonly: true
-          ui:field: ContextViewer
-          ui:options:
-            getContextData: {{formContext.loginName}}
-          description: Harness Project Identifier
-          type: string       
   steps:
     - id: trigger
       name: Writing the GitSync Variable
